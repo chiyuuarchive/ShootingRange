@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: cf53d189824b90640a5fa112391aca1c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - updateScoreUIEvent: {fileID: 11400000, guid: 8af3d50b8f20fe04f8d05d29cb0ceca3,
+      type: 2}
+  - scoreMsg: {instanceID: 0}
+  - updateAmmoUIEvent: {fileID: 11400000, guid: fc836c3ace1c4774c972dcc4120ae124,
+      type: 2}
+  - ammoMsg: {instanceID: 0}
+  - updateMagazineUIEvent: {fileID: 11400000, guid: c975eaac9710cfb459c1bb16094e3aa0,
+      type: 2}
+  - magazineMsg: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4d394545821b02e4082516eb24e94578
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - updateScoreUIEvent: {fileID: 11400000, guid: 8af3d50b8f20fe04f8d05d29cb0ceca3,
+      type: 2}
+  - updateScoreEvent: {fileID: 11400000, guid: fc820c1fa55eb754398e29e7de86bcd0, type: 2}
+  - displayScoreEvent: {fileID: 11400000, guid: 257381d53bad88d47b146e3124715f33,
+      type: 2}
+  - updateEndScreenEvent: {fileID: 11400000, guid: 44e9ac28a5440c84aa1b4340d72a1183,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

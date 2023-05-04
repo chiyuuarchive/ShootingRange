@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b9ce93a1847206840ad6bb5399e55e53
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - updateGameScreenEvent: {fileID: 11400000, guid: da41e6c17c9edb841af9d2fb36082b23,
+      type: 2}
+  - gameScreenMsg: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ab4ce392044ea0044832fcdbb7e1f14b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - updateAmmoEvent: {fileID: 11400000, guid: f7603ba01d22413498783dce329ea927, type: 2}
+  - updateMagazineEvent: {fileID: 11400000, guid: 59dd46fe21c86a6409573e165bd314a7,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

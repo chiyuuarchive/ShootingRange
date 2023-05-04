@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fd343506474085142a2f344816d51b71
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - updateStartScreenEvent: {fileID: 11400000, guid: 5a095d315fa0f4a4e9af01cd0a750936,
+      type: 2}
+  - startScreenMsg: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
