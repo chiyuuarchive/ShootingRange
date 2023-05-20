@@ -8,7 +8,10 @@ public abstract class State : ScriptableObject
 
     public int ID { get { return id; } set { id = value; } }
 
-    public abstract void Enter(Context contex);
+    public virtual void Enter(Context contex)
+    {
+        //Debug.Log("Entering " + this.name);
+    }
     public abstract void UpdateState(Context contex);
     public abstract void Exit(Context contex);
 

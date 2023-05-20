@@ -16,10 +16,14 @@ public class SRailMovement : State
 
     public override void Enter(Context contex)
     {
+        base.Enter(contex);
         //Get relevant variables to move between 2 positions
-        moveObject = contex.GetComponent<Rigidbody>();
-        movementInfo = contex.GetComponent<MovementInfo>();
-        patrolPoints = contex.GetComponent<PatrolPoints>();
+        if (!moveObject)
+            moveObject = contex.GetComponent<Rigidbody>();
+        if (!movementInfo)
+            movementInfo = contex.GetComponent<MovementInfo>();
+        if (!patrolPoints)
+            patrolPoints = contex.GetComponent<PatrolPoints>();
         if (point == null)
             point = patrolPoints.PointA;
 
@@ -27,7 +31,7 @@ public class SRailMovement : State
 
     public override void Exit(Context contex)
     {
-        moveObject.velocity= Vector3.zero;
+        moveObject.velocity = Vector3.zero;
     }
 
     public override void UpdateState(Context contex)
@@ -49,7 +53,7 @@ public class SRailMovement : State
     public bool AtPoint(Vector3 point)
     {
         // may need to change how close to point we need to be
-        return Vector3.Distance(moveObject.transform.position, point) < 0.1f; 
+        return Vector3.Distance(moveObject.transform.position, point) < 0.1f;
     }
 
     public void SwitchPoint()

@@ -6,12 +6,18 @@ using UnityEngine;
 public class SActivating : State
 {
     Animator animator;
+    StateFlags flags;
     public override void Enter(Context contex)
     {
+        base.Enter(contex);
+
         if (animator == null)
             animator = contex.GetComponent<Animator>();
+        if(!flags)
+            flags = contex.GetComponent<StateFlags>();
 
         animator.SetBool("hit", false);
+        flags.Active = true;
     }
 
     public override void Exit(Context contex)

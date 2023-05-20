@@ -8,13 +8,19 @@ public class SInactivating : State
 {
 
     Animator animator;
+    StateFlags flags;
 
     public override void Enter(Context contex)
     {
+        base.Enter(contex);
+
         if (animator == null)
             animator = contex.GetComponent<Animator>();
+        if (!flags)
+            flags = contex.GetComponent<StateFlags>();
 
         animator.SetBool("hit", true);
+        flags.Active = false;
     }
 
     public override void Exit(Context contex)

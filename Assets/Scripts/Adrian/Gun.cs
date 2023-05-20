@@ -44,9 +44,18 @@ public class Gun : MonoBehaviour
             {
                 if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
-                    Debug.Log("Shot Gun!");
+                    //Debug.Log("Shot Gun!");
+                    if(hitInfo.transform.TryGetComponent<HitHandler>(out HitHandler hitHandler)) // hit something
+                    {
+                        Debug.DrawRay(cam.position, cam.forward * gunData.maxDistance, Color.green, 0.1f);
+                        Debug.Log("hit something");
+                        hitHandler.GetHit();
+                    }
                     //Deal damage here
+                    Debug.DrawRay(cam.position, cam.forward * gunData.maxDistance, Color.red, 0.1f);
                 }
+                else
+
 
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
