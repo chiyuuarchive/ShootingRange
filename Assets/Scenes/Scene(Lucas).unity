@@ -1431,5 +1431,11 @@ PrefabInstance:
       propertyPath: pointB
       value: 
       objectReference: {fileID: 1902105059}
+    - target: {fileID: 2582697705549146348, guid: 282d6741ace2a5e43867722cbebebc8b,
+        type: 3}
+      propertyPath: updateScoreEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: fc820c1fa55eb754398e29e7de86bcd0,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 282d6741ace2a5e43867722cbebebc8b, type: 3}
