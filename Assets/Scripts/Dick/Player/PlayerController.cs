@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isLMBPressed) inventory.UseWeapon();
     }
-    void ReloadButtonPressed() => inventory.UseMagazine();
+    void ReloadButtonPressed() => inventory.Reload();
     void PickUpButtonPressed() => RaycastForInteraction();
 
     #region Pickup input handler

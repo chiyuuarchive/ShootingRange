@@ -42,6 +42,11 @@ public class Inventory : MonoBehaviour
 
         return false;
     }
+    public void Reload()
+    {
+        if (!HasWeapon) return;
+        UseMagazine();
+    }
 
     public void AddMagazine(Magazine mag)
     {
@@ -50,11 +55,9 @@ public class Inventory : MonoBehaviour
         Debug.Log("Pick up magazine");
     }
 
-    public bool UseMagazine()
-    {
-        // Check if player is holding a weapon
-        if (!HasWeapon) return false;
 
+    bool UseMagazine()
+    {
         // If there's no magazine in the inventory don't reload.
         if (magazines.Count <= 0) return false;
 
@@ -70,4 +73,6 @@ public class Inventory : MonoBehaviour
         updateMagazineEvent?.Invoke(magazines.Count);
         return true;
     }
+
+   
 }
