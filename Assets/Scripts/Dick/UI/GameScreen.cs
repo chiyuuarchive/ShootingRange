@@ -10,13 +10,13 @@ public class GameScreen : Screen
 
     protected override void InitiateScreen()
     {
-        updateGameScreenEvent.list += UpdateS;
+        updateGameScreenEvent.list += UpdateScreen;
         gameObject.SetActive(false);
     }
 
-    protected override void OnDestroyScreen() => updateGameScreenEvent.list -= UpdateS;
+    protected override void OnDestroyScreen() => updateGameScreenEvent.list -= UpdateScreen;
 
-    protected override void UpdateScreen(int msg)
+    protected override void OnUpdateScreen(int msg)
     {
         if (msg == -1) gameObject.SetActive(false);
         else gameObject.SetActive(true);

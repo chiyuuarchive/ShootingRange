@@ -10,13 +10,13 @@ public class EndScreen : Screen
 
     protected override void InitiateScreen()
     {
-        updateEndScreenEvent.list += UpdateS;
+        updateEndScreenEvent.list += UpdateScreen;
         gameObject.SetActive(false);
     }
 
-    protected override void OnDestroyScreen() => updateEndScreenEvent.list -= UpdateS;
+    protected override void OnDestroyScreen() => updateEndScreenEvent.list -= UpdateScreen;
 
-    protected override void UpdateScreen(int msg)
+    protected override void OnUpdateScreen(int msg)
     {
         gameObject.SetActive(true);
         endScreenMsg.text = $"Your score: {msg}";

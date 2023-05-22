@@ -6,7 +6,7 @@ abstract public class Screen : MonoBehaviour
 {
     protected abstract void InitiateScreen();
     protected abstract void OnDestroyScreen();
-    protected abstract void UpdateScreen(int msg);
+    protected abstract void OnUpdateScreen(int msg);
 
     void Start()
     {
@@ -18,8 +18,8 @@ abstract public class Screen : MonoBehaviour
         OnDestroyScreen();
     }
 
-    public void UpdateS(int msg)
+    public void UpdateScreen(int msg)
     {
-        UpdateScreen(msg);
+        OnUpdateScreen(msg);
     }
 }

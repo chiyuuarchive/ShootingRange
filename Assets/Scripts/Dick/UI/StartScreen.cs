@@ -9,11 +9,11 @@ public class StartScreen : Screen
     TMP_Text startScreenMsg;
 
 
-    protected override void InitiateScreen() => updateStartScreenEvent.list += UpdateS;
+    protected override void InitiateScreen() => updateStartScreenEvent.list += UpdateScreen;
 
-    protected override void OnDestroyScreen() => updateStartScreenEvent.list -= UpdateS;
+    protected override void OnDestroyScreen() => updateStartScreenEvent.list -= UpdateScreen;
 
-    protected override void UpdateScreen(int msg)
+    protected override void OnUpdateScreen(int msg)
     {
         if (msg == -1) gameObject.SetActive(false);
         else gameObject.SetActive(true);
