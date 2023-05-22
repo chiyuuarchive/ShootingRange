@@ -1,22 +1,22 @@
 using UnityEngine;
 using TMPro;
 
-public class EndScreen : MonoBehaviour
+public class EndScreen : Screen
 {
     [SerializeField]
     IntEventSO updateEndScreenEvent;
     [SerializeField]
     TMP_Text endScreenMsg;
 
-    void Start()
+    protected override void InitiateScreen()
     {
-        updateEndScreenEvent.list += UpdateStartScreen;
+        updateEndScreenEvent.list += UpdateS;
         gameObject.SetActive(false);
     }
 
-    private void OnDestroy() => updateEndScreenEvent.list -= UpdateStartScreen;
+    protected override void OnDestroyScreen() => updateEndScreenEvent.list -= UpdateS;
 
-    void UpdateStartScreen(int msg)
+    protected override void UpdateScreen(int msg)
     {
         gameObject.SetActive(true);
         endScreenMsg.text = $"Your score: {msg}";
