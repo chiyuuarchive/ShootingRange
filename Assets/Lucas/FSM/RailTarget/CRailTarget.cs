@@ -15,7 +15,6 @@ public class CRailTarget : Context
      * 
      */
 
-    public IntEventSO updateScoreEvent;
     private StateFlags flags;
 
 
@@ -51,7 +50,5 @@ public class CRailTarget : Context
     {
         Debug.Log("GetHit");
         flags.Active = false;
-        updateScoreEvent?.Invoke(1);
-        //increase score
     }
 }
