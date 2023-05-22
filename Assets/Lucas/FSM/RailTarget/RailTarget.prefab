@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2582697705549146349}
   - component: {fileID: 2582697705549146346}
   - component: {fileID: 4619686789365909}
-  - component: {fileID: 8699775569992672445}
+  - component: {fileID: 1718730198}
   m_Layer: 0
   m_Name: RailTarget
   m_TagString: Untagged
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 470d3493bb154b84fb6d75a843ece909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8699775569992672445
+--- !u!114 &1718730198
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,9 +143,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2581426891937173644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c66ec4364f4d8a343800270c22078222, type: 3}
+  m_Script: {fileID: 11500000, guid: a6f4eae1c03b0264b8a1fcd15f7ca5c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateScoreEvent: {fileID: 11400000, guid: fc820c1fa55eb754398e29e7de86bcd0, type: 2}
+  scoreOnHit: 1
 --- !u!1001 &2582697706022105964
 PrefabInstance:
   m_ObjectHideFlags: 0
