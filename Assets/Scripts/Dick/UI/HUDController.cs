@@ -20,6 +20,10 @@ public class HUDController : MonoBehaviour
 
     void Start()
     {
+        ammoMsg.text = string.Empty;
+        magazineMsg.text = string.Empty;
+        scoreMsg.text = "Score: 0";
+
         updateScoreUIEvent.list += UpdateScoreText;
         updateAmmoUIEvent.list += UpdateAmmoText;
         updateMagazineUIEvent.list += UpdateMagazineText;
@@ -34,7 +38,13 @@ public class HUDController : MonoBehaviour
 
     void UpdateScoreText(int score) => scoreMsg.text = $"Score: {score}";
 
-    void UpdateAmmoText(int ammo) => ammoMsg.text = $"Ammo count: {ammo}";
+    void UpdateAmmoText(int ammo)
+    {
+        if (ammo >= 0)
+            ammoMsg.text = $"Ammo count: {ammo}";
+        else
+            ammoMsg.text = string.Empty;
+    }
 
     void UpdateMagazineText(int numOfMagazines) => magazineMsg.text = $"Magazines left: {numOfMagazines}";
 }

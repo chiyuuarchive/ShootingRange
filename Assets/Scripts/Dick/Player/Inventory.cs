@@ -33,16 +33,13 @@ public class Inventory : MonoBehaviour
         p.Drop();
 
         currentWeapon = null;
+        updateAmmoEvent?.Invoke(-1);
     }
 
     public void UseWeapon()
     {
         // Check if player is holding a weapon
-        if (!HasWeapon) 
-        {
-            Debug.Log("No weapon");
-            return;
-        }
+        if (!HasWeapon) return;
 
         if (currentWeapon.Shoot())
         {

@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
     public int Capacity => gunData.magSize;
     public int AmmoLeft => gunData.currentAmmo;
 
-    private void Start()
+    private void Awake()
     {
         gunData.currentAmmo = gunData.magSize;
     }
@@ -47,14 +47,15 @@ public class Gun : MonoBehaviour
 
        
         ShootingSystem.Play();
-        if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance, Mask))
+        if (Physics.Raycast(muzzle.position, -muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance, Mask))
         {
             TrailRenderer trail = Instantiate(BulletTrail, muzzle.position, Quaternion.identity);
 
             StartCoroutine(SpawnTrail(trail, hitInfo));
             Debug.Log(hitInfo.transform.name);
-            //Deal damage here
 
+            //Deal damage here
+            hitInfo.transform.GetComponent<TargetHitHandler>()?.GetHit();
         }
 
         gunData.currentAmmo--;
