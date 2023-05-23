@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     IntEventSO updateGameScreenEvent;
     [SerializeField]
     EventSO displayScoreBoardEvent;
+    [SerializeField]
+    EventSO updateTargetImmunityEvent;
 
     [SerializeField]
     float startDelay = 4f;
@@ -22,6 +24,8 @@ public class GameManager : MonoBehaviour
     bool gameHasStarted, gameHasEnded;
 
     InputAction restartKeyPressed, quitGameKeyPressed;
+
+    public bool GameHasStarted => gameHasStarted;
 
     void ResetTimer() => counter = 0;
 
@@ -53,7 +57,6 @@ public class GameManager : MonoBehaviour
         quitGameKeyPressed?.Disable();
     }
 
-    // Use coroutine!! (WIP)
     private void FixedUpdate()
     {
         if (gameHasEnded) return;
@@ -66,6 +69,7 @@ public class GameManager : MonoBehaviour
             {
                 gameHasStarted = true;
                 updateStartScreenEvent?.Invoke(-1);
+                updateTargetImmunityEvent?.Invoke();
                 ResetTimer();
             }
             return;
@@ -78,7 +82,6 @@ public class GameManager : MonoBehaviour
             StopGame();
     }
 
-    // Use coroutine!! (WIP)
     void InvokeWarningMsg()
     {
         int secsLeft = (int)(gameDuration - counter);

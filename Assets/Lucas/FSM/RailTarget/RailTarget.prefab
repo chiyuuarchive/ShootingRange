@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateScoreEvent: {fileID: 11400000, guid: fc820c1fa55eb754398e29e7de86bcd0, type: 2}
+  updateTargetImmunityEvent: {fileID: 11400000, guid: 43878b8520f4ddf48ad3312505f0ce9e,
+    type: 2}
   scoreOnHit: 1
 --- !u!1001 &2582697706022105964
 PrefabInstance:
