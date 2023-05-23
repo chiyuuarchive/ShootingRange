@@ -8,6 +8,8 @@ public class PatrolPoints : MonoBehaviour
     [SerializeField] private Transform pointA;
     [SerializeField] private Transform pointB;
 
-    public Vector3 PointA { get { return pointA.position; } }
-    public Vector3 PointB { get { return pointB.position; } }
+    public Transform PointA { get { return pointA; } }
+    //public Vector3 PointA { get { return pointA.position; } }
+    public Transform PointB { get { return pointB; } }
+    //public Vector3 PointB { get { return pointB.position; } }
 }

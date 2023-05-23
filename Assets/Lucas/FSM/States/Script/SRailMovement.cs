@@ -12,7 +12,7 @@ public class SRailMovement : State
     private Rigidbody rigidbody;
     private MovementInfo movementInfo;
     private PatrolPoints patrolPoints;
-    private Vector3 nextPoint;
+    private Transform nextPoint;
 
     public override void Enter(Context contex)
     {
@@ -36,18 +36,19 @@ public class SRailMovement : State
 
     public override void UpdateState(Context contex)
     {
-        if (AtPoint(nextPoint))
+        if (AtPoint(nextPoint.position))
             SwitchNextPoint(); // start moving towards other point instead
 
         Vector3 dirToPoint = GetDirToPoint(nextPoint);
 
 
-        rigidbody.velocity = dirToPoint * movementInfo.Speed * Time.deltaTime;
+        rigidbody.velocity = movementInfo.Speed * Time.deltaTime * dirToPoint;
     }
 
-    private Vector3 GetDirToPoint(Vector3 point)
+    private Vector3 GetDirToPoint(Transform point)
     {
-        return (point - rigidbody.transform.position).normalized;
+        Debug.Log(point.position + " " + rigidbody.transform.position);
+        return (point.position - rigidbody.transform.position).normalized;
     }
 
     private bool AtPoint(Vector3 point)

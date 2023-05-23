@@ -10,7 +10,7 @@ public abstract class State : ScriptableObject
 
     public virtual void Enter(Context contex)
     {
-        //Debug.Log("Entering " + this.name);
+        Debug.Log("Entering " + this.name);
     }
     public abstract void UpdateState(Context contex);
     public abstract void Exit(Context contex);
