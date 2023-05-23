@@ -14,12 +14,4 @@ public abstract class State : ScriptableObject
     }
     public abstract void UpdateState(Context contex);
     public abstract void Exit(Context contex);
-
-    public enum States
-    {
-        Move,
-        Idle,
-        Inactivating,
-        Activating
-    }
 }

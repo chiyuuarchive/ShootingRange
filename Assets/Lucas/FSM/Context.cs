@@ -28,7 +28,6 @@ public class Context : MonoBehaviour
 
     public void AddState(State state) { states.Add(state); }
     public void SetDefaultState(State state) { defaultState = state.ID; }
-    public void SetGoalId(int goal) { goalID = goal; }
 
     public bool TransitionState(int goal)
     {

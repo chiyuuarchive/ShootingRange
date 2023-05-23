@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenuAttribute(menuName = "State/Activating")]
 public class SActivating : State
 {
-    Animator animator;
-    StateFlags flags;
+    private Animator animator;
+    private StateFlags flags;
     public override void Enter(Context contex)
     {
         base.Enter(contex);

@@ -9,59 +9,59 @@ using UnityEngine;
 /// </summary>
 public class SRailMovement : State
 {
-    private Rigidbody moveObject;
+    private Rigidbody rigidbody;
     private MovementInfo movementInfo;
     private PatrolPoints patrolPoints;
-    private Vector3 point;
+    private Vector3 nextPoint;
 
     public override void Enter(Context contex)
     {
         base.Enter(contex);
         //Get relevant variables to move between 2 positions
-        if (!moveObject)
-            moveObject = contex.GetComponent<Rigidbody>();
+        if (!rigidbody)
+            rigidbody = contex.GetComponent<Rigidbody>();
         if (!movementInfo)
             movementInfo = contex.GetComponent<MovementInfo>();
         if (!patrolPoints)
             patrolPoints = contex.GetComponent<PatrolPoints>();
-        if (point == null)
-            point = patrolPoints.PointA;
+        if (nextPoint == null)
+            nextPoint = patrolPoints.PointA;
 
     }
 
     public override void Exit(Context contex)
     {
-        moveObject.velocity = Vector3.zero;
+        rigidbody.velocity = Vector3.zero;
     }
 
     public override void UpdateState(Context contex)
     {
-        if (AtPoint(point))
-            SwitchPoint(); // start moving towards other point instead
+        if (AtPoint(nextPoint))
+            SwitchNextPoint(); // start moving towards other point instead
 
-        Vector3 dirToPoint = GetDirToPoint(point);
+        Vector3 dirToPoint = GetDirToPoint(nextPoint);
 
 
-        moveObject.velocity = dirToPoint * movementInfo.Speed * Time.deltaTime;
+        rigidbody.velocity = dirToPoint * movementInfo.Speed * Time.deltaTime;
     }
 
-    public Vector3 GetDirToPoint(Vector3 point)
+    private Vector3 GetDirToPoint(Vector3 point)
     {
-        return (point - moveObject.transform.position).normalized;
+        return (point - rigidbody.transform.position).normalized;
     }
 
-    public bool AtPoint(Vector3 point)
+    private bool AtPoint(Vector3 point)
     {
         // may need to change how close to point we need to be
-        return Vector3.Distance(moveObject.transform.position, point) < 0.1f;
+        return Vector3.Distance(rigidbody.transform.position, point) < 0.1f;
     }
 
-    public void SwitchPoint()
+    private void SwitchNextPoint()
     {
-        if (point == patrolPoints.PointA)
-            point = patrolPoints.PointB;
+        if (nextPoint == patrolPoints.PointA)
+            nextPoint = patrolPoints.PointB;
         else
-            point = patrolPoints.PointA;
+            nextPoint = patrolPoints.PointA;
     }
 
 }

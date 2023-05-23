@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Timer
 {
-    float timerLength;
-    float timeLeft;
-    bool autoReset;
+    private float timerLength;
+    private float timeLeft;
+    private bool autoReset;
 
 
     /// <summary>

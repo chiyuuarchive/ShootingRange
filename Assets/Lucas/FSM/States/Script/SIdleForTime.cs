@@ -6,7 +6,7 @@ using UnityEngine;
 public class SIdleForTime : State
 {
     [SerializeField] private float idleTime;
-    private Rigidbody moveObject;
+    private Rigidbody rigidbody;
     private StateFlags flags;
     private Timer timer;
 
@@ -14,14 +14,14 @@ public class SIdleForTime : State
     {
         base.Enter(contex);
 
-        if (!moveObject)
-            moveObject = contex.GetComponent<Rigidbody>();
+        if (!rigidbody)
+            rigidbody = contex.GetComponent<Rigidbody>();
         if(!flags)
             flags = contex.GetComponent<StateFlags>();
         if (timer == null)
             timer = new Timer(idleTime, false);
 
-        moveObject.velocity = Vector3.zero;
+        rigidbody.velocity = Vector3.zero;
 
         flags.FinnishedIdling = false;
         flags.Idling= true;

@@ -7,8 +7,8 @@ using UnityEngine.Rendering;
 public class SInactivating : State
 {
 
-    Animator animator;
-    StateFlags flags;
+    private Animator animator;
+    private StateFlags flags;
 
     public override void Enter(Context contex)
     {
