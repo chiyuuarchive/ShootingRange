@@ -25,12 +25,18 @@ public class Inventory : MonoBehaviour
         Debug.Log("Pick up weapon");
     }
 
+    public void DropWeapon()
+    {
+        currentWeapon.Drop();
+        currentWeapon = null;
+    }
+
     public bool UseWeapon()
     {
         // Check if player is holding a weapon
         if (!HasWeapon) return false;
 
-        if (currentWeapon.Fire())
+        if (currentWeapon.Shoot())
         {
             updateAmmoEvent?.Invoke(currentWeapon.AmmoLeft);
             return true;
@@ -68,7 +74,7 @@ public class Inventory : MonoBehaviour
         int ammo = mag.AmmoCount > currentWeapon.Capacity ? currentWeapon.Capacity : mag.AmmoCount;
 
         // Reload weapon
-        currentWeapon.Reload(ammo);
+        currentWeapon.StartReload(ammo);
         updateAmmoEvent?.Invoke(ammo);
         updateMagazineEvent?.Invoke(magazines.Count);
         return true;

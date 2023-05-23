@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 1978471637655604388}
   - component: {fileID: 5420857361349278248}
   - component: {fileID: 8616685848737228376}
-  - component: {fileID: 6781999657583016565}
   - component: {fileID: 7019887213718936339}
   - component: {fileID: 8729808268053601562}
   m_Layer: 8
@@ -341,24 +340,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &6781999657583016565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8616685848737228372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab9f992de054e7242a0a32bce05b3472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateMagazineUIEvent: {fileID: 11400000, guid: c975eaac9710cfb459c1bb16094e3aa0,
-    type: 2}
-  updateMagazineEvent: {fileID: 11400000, guid: 59dd46fe21c86a6409573e165bd314a7,
-    type: 2}
-  updateAmmoUIEvent: {fileID: 11400000, guid: fc836c3ace1c4774c972dcc4120ae124, type: 2}
-  updateAmmoEvent: {fileID: 11400000, guid: f7603ba01d22413498783dce329ea927, type: 2}
 --- !u!114 &7019887213718936339
 MonoBehaviour:
   m_ObjectHideFlags: 0
