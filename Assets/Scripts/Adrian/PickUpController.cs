@@ -51,30 +51,9 @@ public class PickUpController : MonoBehaviour
         Transform playerWeaponSocket = GameObject.Find("WeaponSocket").transform;
         transform.parent = playerWeaponSocket;
 
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
 
-        // Adjust weapon transform
-        //transform.position = new Vector3(playerWeaponSocket.position.x, playerWeaponSocket.position.y, playerWeaponSocket.position.z);
-        //transform.rotation = new Quaternion(playerWeaponSocket.rotation.x, playerWeaponSocket.rotation.y-90, playerWeaponSocket.rotation.z, playerWeaponSocket.rotation.w);
-
-        if(transform.gameObject.name == "Assault Rifle")
-        {
-            
-        }
-
-        else if(transform.gameObject.name == "Pistol")
-        {
-
-        }
-
-        else if(transform.gameObject.name == "SMG")
-        {
-
-        }
-
-        else if(transform.gameObject.name == "Sniper Rifle")
-        {
-
-        }
 
         //Make rigidbody kinematic and BoxCollider a trigger
         rb.isKinematic = true;

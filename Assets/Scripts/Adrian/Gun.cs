@@ -7,7 +7,13 @@ public class Gun : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GunData gunData;
-    [SerializeField] private Transform cam;
+    [SerializeField] private Transform muzzle;
+    [SerializeField] private ParticleSystem ShootingSystem;
+    [SerializeField] private TrailRenderer BulletTrail;
+    [SerializeField] private LayerMask Mask;
+
+
+
 
     float timeSinceLastShot;
 
@@ -42,28 +48,44 @@ public class Gun : MonoBehaviour
         {
             if (CanShoot())
             {
-                if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                ShootingSystem.Play();
+                if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance, Mask))
                 {
-                    Debug.Log("Shot Gun!");
+                    TrailRenderer trail = Instantiate(BulletTrail, muzzle.position, Quaternion.identity);
+
+                    StartCoroutine(SpawnTrail(trail, hitInfo));
+                    Debug.Log(hitInfo.transform.name);
                     //Deal damage here
                 }
 
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
-                OnGunShot();
             }
         }
+    }
+
+    private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit Hit)
+    {
+        float time = 0;
+        Vector3 startPosition = Trail.transform.position;
+
+        while (time < 1)
+        {
+            Trail.transform.position = Vector3.Lerp(startPosition, Hit.point, time);
+            time += Time.deltaTime / Trail.time;
+            
+            yield return null;
+        }
+        Trail.transform.position = Hit.point;
+        Destroy(Trail.gameObject, Trail.time);
     }
 
     private void Update()
     {
         timeSinceLastShot += Time.deltaTime;
 
-        Debug.DrawRay(cam.position, cam.forward * gunData.maxDistance);
+        Debug.DrawRay(muzzle.position, muzzle.forward * gunData.maxDistance, Color.blue);
     }
 
-    private void OnGunShot()
-    {
 
-    }
 }
