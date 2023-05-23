@@ -8,8 +8,17 @@ public class TargetHitHandler : HitHandler
     [SerializeField] private IntEventSO updateScoreEvent;
     [SerializeField] private int scoreOnHit;
 
+    private StateFlags flags;
+
+    private void Start()
+    {
+        flags = GetComponent<StateFlags>();
+    }
+
     public override void GetHit()
     {
+        if (!flags.Active) return;
+
         base.GetHit();
         updateScoreEvent?.Invoke(scoreOnHit);
     }
