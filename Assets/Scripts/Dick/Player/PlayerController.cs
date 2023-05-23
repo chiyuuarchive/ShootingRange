@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     void ReloadButtonPressed() 
     {
-        if (inventory.HasWeapon) inventory.Reload();
+        if (inventory.HasWeapon) inventory.UseMagazine();
     } 
 
     void PickUpButtonPressed() => RaycastForInteraction();

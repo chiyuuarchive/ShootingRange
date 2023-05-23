@@ -49,7 +49,7 @@ public class Inventory : MonoBehaviour
 
         // Attempt to reload if weapon is out of ammo
         if (currentWeapon.AmmoLeft <= 0)
-            if (Reload()) Debug.Log("Weapon has been reloaded");
+            UseMagazine();
     }
     public void AddMagazine(Magazine mag)
     {
@@ -58,10 +58,10 @@ public class Inventory : MonoBehaviour
         Debug.Log("Pick up magazine");
     }
 
-    public bool Reload()
+    public void UseMagazine()
     {
         // If there's no magazine in the inventory don't reload.
-        if (magazines.Count <= 0) return false;
+        if (magazines.Count <= 0) return;
 
         Magazine mag = magazines[0];
         magazines.Remove(mag);
@@ -73,7 +73,6 @@ public class Inventory : MonoBehaviour
         currentWeapon.StartReload(ammo);
         updateAmmoEvent?.Invoke(ammo);
         updateMagazineEvent?.Invoke(magazines.Count);
-        return true;
     }
 
    

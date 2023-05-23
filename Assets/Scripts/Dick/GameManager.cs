@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     IntEventSO updateGameScreenEvent;
     [SerializeField]
-    EventSO displayScoreEvent;
+    EventSO displayScoreBoardEvent;
 
     [SerializeField]
     float startDelay = 4f;
@@ -89,8 +89,11 @@ public class GameManager : MonoBehaviour
     {
         gameHasEnded = true;
         Debug.Log("Game has ended!");
-        displayScoreEvent?.Invoke();
+        displayScoreBoardEvent?.Invoke();
         updateGameScreenEvent?.Invoke(-1);
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     void RestartKeyButtonPressed()

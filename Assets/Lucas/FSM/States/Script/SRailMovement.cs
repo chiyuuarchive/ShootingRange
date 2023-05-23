@@ -47,7 +47,7 @@ public class SRailMovement : State
 
     private Vector3 GetDirToPoint(Transform point)
     {
-        Debug.Log(point.position + " " + rigidbody.transform.position);
+        //Debug.Log(point.position + " " + rigidbody.transform.position);
         return (point.position - rigidbody.transform.position).normalized;
     }
 

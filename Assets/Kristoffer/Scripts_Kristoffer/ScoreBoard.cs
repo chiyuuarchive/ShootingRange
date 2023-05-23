@@ -5,18 +5,33 @@ using UnityEngine;
 
 public class ScoreBoard : MonoBehaviour
 {
+    [SerializeField] private IntEventSO updateScoreBoardEvent;
+
     private List<Score> scoreList;
     [SerializeField] private ScoreSetter scorePanel;
     [SerializeField] private GameObject submitter;
+
+
+    private GameObject parent;
     private void Start()
     {       
         scoreList = new List<Score>();
         scoreList = ReaderWriterManager.Instance.GetComponent<ReaderWriterManager>().LoadScore();
+        updateScoreBoardEvent.list += CheckScore;
+
+        parent = gameObject.transform.parent.gameObject;
+        parent.SetActive(false);
     }
+
+    void OnDestroy() => updateScoreBoardEvent.list -= CheckScore;
+
     public void CheckScore(int score)
     {
+        // Display the scoreboard
+        parent.SetActive(true);
+
         //See if there are less than 10 scores on the list or if the smallest sorted value on the list is less than the new score.
-        if(scoreList.Count<10 || scoreList[scoreList.Count - 1].score < score)
+        if (scoreList.Count<10 || scoreList[scoreList.Count - 1].score < score)
         {
             //Activates the submitter allowing you to add the new score to the list.
             submitter.SetActive(true);

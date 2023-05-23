@@ -1542,6 +1542,11 @@ PrefabInstance:
       propertyPath: submitter
       value: 
       objectReference: {fileID: 5795029596379542290}
+    - target: {fileID: 883156990, guid: ba64299bfd54e714b8820a9073f32410, type: 3}
+      propertyPath: updateScoreBoardEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: caf087f8d3c96ad44ad24d73671bcb45,
+        type: 2}
     - target: {fileID: 2092997886982673077, guid: ba64299bfd54e714b8820a9073f32410,
         type: 3}
       propertyPath: m_AnchorMax.y

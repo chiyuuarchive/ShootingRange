@@ -10,20 +10,22 @@ public class ScoreManager : MonoBehaviour
     IntEventSO updateScoreEvent;
     [SerializeField]
     EventSO displayScoreEvent;
+
     [SerializeField]
-    IntEventSO updateEndScreenEvent;
+    EventSO displayScoreBoardEvent;
+    [SerializeField]
+    IntEventSO updateScoreBoardEvent;
 
     int currentScore = 0;
 
     void Start()
     {
         updateScoreEvent.list += UpdateScore;
-        displayScoreEvent.list += DisplayScore;
+        displayScoreBoardEvent.list += DisplayScoreBoard;
     }
     void OnDestroy()
     {
         updateScoreEvent.list -= UpdateScore;
-        displayScoreEvent.list -= DisplayScore;
     }
 
     // Invoked when player score changes to game events
@@ -33,5 +35,5 @@ public class ScoreManager : MonoBehaviour
         updateScoreUIEvent?.Invoke(currentScore);
     }
 
-    void DisplayScore() => updateEndScreenEvent?.Invoke(currentScore);
+    void DisplayScoreBoard() => updateScoreBoardEvent?.Invoke(currentScore);
 }
