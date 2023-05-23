@@ -14,51 +14,52 @@ public class Gun : MonoBehaviour
 
     float timeSinceLastShot;
 
-    public void Start()
+    public int Capacity => gunData.magSize;
+    public int AmmoLeft => gunData.currentAmmo;
+
+    private void Start()
     {
-        PlayerShoot.shootInput += Shoot;
-        PlayerShoot.reloadInput += StartReload;
+        gunData.currentAmmo = gunData.magSize;
     }
 
     private void OnDisable() => gunData.reloading = false;
 
-    public void StartReload()
+    public void StartReload(int ammo)
     {
         if (!gunData.reloading && gameObject.activeSelf)
         {
-            StartCoroutine(Reload());
+            StartCoroutine(Reload(ammo));
         }
     }
 
-    private IEnumerator Reload()
+    private IEnumerator Reload(int ammo)
     {
         gunData.reloading = true;
         yield return new WaitForSeconds(gunData.reloadTime);
-        gunData.currentAmmo = gunData.magSize;
+        gunData.currentAmmo = ammo;
         gunData.reloading = false;
     }
 
     private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
-    public void Shoot()
+    public bool Shoot()
     {
-        if (gunData.currentAmmo > 0)
+        if (gunData.currentAmmo <= 0 || !CanShoot()) return false;
+
+       
+        ShootingSystem.Play();
+        if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance, Mask))
         {
-            if (CanShoot())
-            {
-                ShootingSystem.Play();
-                if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance, Mask))
-                {
-                    TrailRenderer trail = Instantiate(BulletTrail, muzzle.position, Quaternion.identity);
+            TrailRenderer trail = Instantiate(BulletTrail, muzzle.position, Quaternion.identity);
 
-                    StartCoroutine(SpawnTrail(trail, hitInfo));
-                    Debug.Log(hitInfo.transform.name);
-                    //Deal damage here
-                }
+            StartCoroutine(SpawnTrail(trail, hitInfo));
+            Debug.Log(hitInfo.transform.name);
+            //Deal damage here
 
-                gunData.currentAmmo--;
-                timeSinceLastShot = 0;
-            }
         }
+
+        gunData.currentAmmo--;
+        timeSinceLastShot = 0;
+        return true;
     }
 
     private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit Hit)

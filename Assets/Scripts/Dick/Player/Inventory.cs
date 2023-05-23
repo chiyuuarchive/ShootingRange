@@ -8,52 +8,52 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     IntEventSO updateMagazineEvent;
 
-    Weapon currentWeapon;
+    Gun currentWeapon;
     List<Magazine> magazines;
 
     public bool HasWeapon => currentWeapon != null;
 
     void Start() => magazines = new List<Magazine>();
 
-    public void AddWeapon(Weapon weapon)
+    public void PickWeapon(Gun weapon)
     {
-        Destroy(currentWeapon);
-        Weapon w = Instantiate(weapon);
-        w.Mount();
-        currentWeapon = w;
-        updateAmmoEvent?.Invoke(w.Capacity);
+        if (HasWeapon) DropWeapon();
+
+        PickUpController pc = weapon.GetComponent<PickUpController>();
+        pc.PickUp();
+
+        currentWeapon = weapon;
+        updateAmmoEvent?.Invoke(weapon.AmmoLeft);
         Debug.Log("Pick up weapon");
     }
 
     public void DropWeapon()
     {
-        currentWeapon.Drop();
+        PickUpController p = currentWeapon.GetComponent<PickUpController>();
+        p.Drop();
+
         currentWeapon = null;
     }
 
-    public bool UseWeapon()
+    public void UseWeapon()
     {
         // Check if player is holding a weapon
-        if (!HasWeapon) return false;
+        if (!HasWeapon) 
+        {
+            Debug.Log("No weapon");
+            return;
+        }
 
         if (currentWeapon.Shoot())
         {
             updateAmmoEvent?.Invoke(currentWeapon.AmmoLeft);
-            return true;
+            return;
         }
 
         // Attempt to reload if weapon is out of ammo
         if (currentWeapon.AmmoLeft <= 0)
-            if (UseMagazine()) Debug.Log("Weapon has been reloaded");
-
-        return false;
+            if (Reload()) Debug.Log("Weapon has been reloaded");
     }
-    public void Reload()
-    {
-        if (!HasWeapon) return;
-        UseMagazine();
-    }
-
     public void AddMagazine(Magazine mag)
     {
         magazines.Add(mag);
@@ -61,8 +61,7 @@ public class Inventory : MonoBehaviour
         Debug.Log("Pick up magazine");
     }
 
-
-    bool UseMagazine()
+    public bool Reload()
     {
         // If there's no magazine in the inventory don't reload.
         if (magazines.Count <= 0) return false;

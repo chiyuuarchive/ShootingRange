@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
         dropWeaponAction = new InputAction(binding: "<Keyboard>/e");
         dropWeaponAction.performed += ctx => DropWeapon();
-        
+
         inventory = GetComponent<Inventory>();
     }
 
@@ -51,12 +51,16 @@ public class PlayerController : MonoBehaviour
         if (isLMBPressed) inventory.UseWeapon();
     }
 
-    void ReloadButtonPressed() => inventory.Reload();
+    void ReloadButtonPressed() 
+    {
+        if (inventory.HasWeapon) inventory.Reload();
+    } 
+
     void PickUpButtonPressed() => RaycastForInteraction();
 
     void DropWeapon()
     {
-        if (inventory.UseWeapon()) inventory.DropWeapon();
+        if (inventory.HasWeapon) inventory.DropWeapon();
     }
 
     #region Pickup input handler
@@ -86,13 +90,8 @@ public class PlayerController : MonoBehaviour
         // Check if player is close enough to take the weapon
         if ((hit.collider.gameObject.transform.position - transform.position).magnitude > pickUpDistance) return;
 
-        Weapon wep = hit.collider.GetComponent<Weapon>();
-
-        if (wep != null)
-        {
-            inventory.AddWeapon(wep);
-            Destroy(wep.gameObject);
-        }
+        Gun wep = hit.collider.GetComponentInParent<Gun>();
+        if (wep != null) inventory.PickWeapon(wep);
     }
 
     void InvokePickUpMagazine(RaycastHit hit)

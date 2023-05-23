@@ -33,6 +33,7 @@ public class PickUpController : MonoBehaviour
         }
     }
 
+    /*
     private void Update()
     {
         //Check if player is in range and presses E
@@ -41,9 +42,9 @@ public class PickUpController : MonoBehaviour
 
         //Drop if equipped and player presses Q
         if (equipped && Input.GetKeyDown(KeyCode.Q)) Drop();
-    }
+    }*/
 
-    private void PickUp()
+    public void PickUp()
     {
         equipped = true;
         slotFull = true;
@@ -63,7 +64,7 @@ public class PickUpController : MonoBehaviour
         gunScript.enabled = true;
     }
 
-    private void Drop()
+    public void Drop()
     {
         equipped = false;
         slotFull = false;

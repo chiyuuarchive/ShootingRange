@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: dd165908d9cebdf45b7d4e6414389308, type: 2}
   muzzle: {fileID: 6645899860223375143}
-  ShootingSystem: {fileID: 0}
+  ShootingSystem: {fileID: 6842648915566790249}
   BulletTrail: {fileID: 8511574316365352547, guid: 97ae82350edd95e4aad163d5526fa9c7,
     type: 3}
   Mask:
@@ -86,10 +86,10 @@ MonoBehaviour:
   gunScript: {fileID: 6644425706277863588}
   rb: {fileID: 6644425706277863769}
   coll: {fileID: 6644425706632547271}
-  player: {fileID: 0}
-  fpsCam: {fileID: 0}
+  player: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+  fpsCam: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
   pickUpRange: 3
-  dropForwardForce: 15
+  dropForwardForce: 5
   dropUpwardForce: 7
   equipped: 0
 --- !u!1 &6644425706632547268
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 6644425706632547271}
   m_Layer: 0
   m_Name: Pistol
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,8 +119,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6644425706632547268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.06, y: -0.09, z: -0.76}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6645899860223375143}
@@ -300,6 +300,12 @@ PrefabInstance:
 --- !u!4 &6645899860223375143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6644425705673825075}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6842648915566790249 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198234346748616026, guid: ad2ab49d0a2a17148bd51c93d977bdbc,
     type: 3}
   m_PrefabInstance: {fileID: 6644425705673825075}
   m_PrefabAsset: {fileID: 0}
