@@ -12,7 +12,6 @@ public class MergeSorter : MonoBehaviour
         {
             return list;
         }
-
         // Split the list into two halves
         int middleIndex = list.Count / 2;
         List<Score> leftList = new List<Score>(list.GetRange(0, middleIndex));

@@ -27,6 +27,7 @@ public class ScoreBoard : MonoBehaviour
 
     public void CheckScore(int score)
     {
+        scorePanel.UpdateScore(scoreList);
         // Display the scoreboard
         parent.SetActive(true);
 
