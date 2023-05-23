@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class ScoreBoard : MonoBehaviour
 {
-    List<Score> scoreList;
+    private List<Score> scoreList;
     [SerializeField] private ScoreSetter scorePanel;
     [SerializeField] private GameObject submitter;
     private void Start()
-    {
-        scoreList = new List<Score>();          
+    {       
+        scoreList = new List<Score>();
+        scoreList = ReaderWriterManager.Instance.GetComponent<ReaderWriterManager>().LoadScore();
     }
     public void CheckScore(int score)
     {
@@ -45,6 +46,7 @@ public class ScoreBoard : MonoBehaviour
     private void SortList(List<Score> scoreList)
     {
         scoreList = MergeSorter.MergeSort(scoreList);
+        ReaderWriterManager.Instance.SaveScore(scoreList);
         scorePanel.UpdateScore(scoreList);
     }
 }

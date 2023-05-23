@@ -9,10 +9,10 @@ public class ScorePanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI nameText;
 
-    public void UpdateScorePanel(int rank, string score, string Name)
+    public void UpdateScorePanel(Score score)
     {
-        rankText.text = rank.ToString();
-        scoreText.text = score;
-        nameText.text = Name;
+        rankText.text = score.rank.ToString();
+        scoreText.text = score.score.ToString();
+        nameText.text = score.Name;
     }
 }
