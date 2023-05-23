@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4874813384894418252}
   - component: {fileID: 3455185131332527477}
+  - component: {fileID: 7195550845602608663}
+  - component: {fileID: 5688813385488267629}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -52,3 +54,38 @@ MonoBehaviour:
   startDelay: 4
   gameDuration: 15
   showMsgAt: 10
+--- !u!114 &7195550845602608663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4874813384894418250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d394545821b02e4082516eb24e94578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateScoreUIEvent: {fileID: 11400000, guid: 8af3d50b8f20fe04f8d05d29cb0ceca3, type: 2}
+  updateScoreEvent: {fileID: 11400000, guid: fc820c1fa55eb754398e29e7de86bcd0, type: 2}
+  displayScoreEvent: {fileID: 11400000, guid: 257381d53bad88d47b146e3124715f33, type: 2}
+  updateEndScreenEvent: {fileID: 11400000, guid: 44e9ac28a5440c84aa1b4340d72a1183,
+    type: 2}
+--- !u!114 &5688813385488267629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4874813384894418250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9f992de054e7242a0a32bce05b3472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateMagazineUIEvent: {fileID: 11400000, guid: c975eaac9710cfb459c1bb16094e3aa0,
+    type: 2}
+  updateMagazineEvent: {fileID: 11400000, guid: 59dd46fe21c86a6409573e165bd314a7,
+    type: 2}
+  updateAmmoUIEvent: {fileID: 11400000, guid: fc836c3ace1c4774c972dcc4120ae124, type: 2}
+  updateAmmoEvent: {fileID: 11400000, guid: f7603ba01d22413498783dce329ea927, type: 2}

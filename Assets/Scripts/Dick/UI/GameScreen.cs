@@ -1,21 +1,22 @@
 using UnityEngine;
 using TMPro;
 
-public class GameScreen : MonoBehaviour
+public class GameScreen : Screen
 {
     [SerializeField]
     IntEventSO updateGameScreenEvent;
     [SerializeField]
     TMP_Text gameScreenMsg;
 
-    void Start()
+    protected override void InitiateScreen()
     {
-        updateGameScreenEvent.list += UpdateGameScreen;
+        updateGameScreenEvent.list += UpdateScreen;
         gameObject.SetActive(false);
     }
-    void OnDestroy() => updateGameScreenEvent.list -= UpdateGameScreen;
 
-    void UpdateGameScreen(int msg)
+    protected override void OnDestroyScreen() => updateGameScreenEvent.list -= UpdateScreen;
+
+    protected override void OnUpdateScreen(int msg)
     {
         if (msg == -1) gameObject.SetActive(false);
         else gameObject.SetActive(true);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScoreSetter : MonoBehaviour
 {
     [SerializeField] public GameObject scorePanelPrefab;
-    List<GameObject> scorePanels;
+    private List<GameObject> scorePanels;
 
     private void Start()
     {
@@ -25,7 +25,8 @@ public class ScoreSetter : MonoBehaviour
         }
         for (int i = 0; i < scoreList.Count; i++)
         {
-            scorePanels[i].GetComponent<ScorePanel>().UpdateScorePanel(i + 1, scoreList[i].score.ToString(), scoreList[i].Name);
+            scoreList[i].rank = i + 1;
+            scorePanels[i].GetComponent<ScorePanel>().UpdateScorePanel(scoreList[i]);
         }
     }
 }

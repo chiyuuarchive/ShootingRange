@@ -21,20 +21,20 @@ public class HUDController : MonoBehaviour
     void Start()
     {
         updateScoreUIEvent.list += UpdateScoreText;
-        updateAmmoUIEvent.list += UpdateAmmo;
-        updateMagazineUIEvent.list += UpdateMagazine;
+        updateAmmoUIEvent.list += UpdateAmmoText;
+        updateMagazineUIEvent.list += UpdateMagazineText;
     }
 
     void OnDestroy()
     {
         updateScoreUIEvent.list -= UpdateScoreText;
-        updateAmmoUIEvent.list -= UpdateAmmo;
-        updateMagazineUIEvent.list -= UpdateMagazine;
+        updateAmmoUIEvent.list -= UpdateAmmoText;
+        updateMagazineUIEvent.list -= UpdateMagazineText;
     }
 
     void UpdateScoreText(int score) => scoreMsg.text = $"Score: {score}";
 
-    void UpdateAmmo(int ammo) => ammoMsg.text = $"Ammo count: {ammo}";
+    void UpdateAmmoText(int ammo) => ammoMsg.text = $"Ammo count: {ammo}";
 
-    void UpdateMagazine(int numOfMagazines) => magazineMsg.text = $"Magazines left: {numOfMagazines}";
+    void UpdateMagazineText(int numOfMagazines) => magazineMsg.text = $"Magazines left: {numOfMagazines}";
 }
