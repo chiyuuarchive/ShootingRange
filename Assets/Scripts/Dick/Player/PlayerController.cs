@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float pickUpDistance;
 
-    InputAction shootAction, pickUpAction, reloadAction;
+    InputAction shootAction, pickUpAction, reloadAction, dropWeaponAction;
     bool isLMBPressed;
 
     Inventory inventory;
@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
         reloadAction = new InputAction(binding: "<Mouse>/rightButton");
         reloadAction.performed += ctx => ReloadButtonPressed();
+
+        dropWeaponAction = new InputAction(binding: "<Keyboard>/e");
+        dropWeaponAction.performed += ctx => DropWeapon();
         
         inventory = GetComponent<Inventory>();
     }
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour
         shootAction?.Enable();
         pickUpAction?.Enable();
         reloadAction?.Enable();
+        dropWeaponAction?.Enable();
     }
 
     private void OnDisable()
@@ -39,14 +43,21 @@ public class PlayerController : MonoBehaviour
         shootAction?.Disable();
         pickUpAction?.Disable();
         reloadAction?.Disable();
+        dropWeaponAction?.Disable();
     }
 
     void Update()
     {
         if (isLMBPressed) inventory.UseWeapon();
     }
+
     void ReloadButtonPressed() => inventory.Reload();
     void PickUpButtonPressed() => RaycastForInteraction();
+
+    void DropWeapon()
+    {
+        if (inventory.UseWeapon()) inventory.DropWeapon();
+    }
 
     #region Pickup input handler
     void RaycastForInteraction()
