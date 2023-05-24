@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float pickUpDistance;
 
-    InputAction shootAction, pickUpAction, reloadAction, dropWeaponAction;
+    InputAction shootAction, pickUpAction, reloadAction, dropWeaponAction, quitGameAction;
     bool isLMBPressed;
 
     Inventory inventory;
@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
         dropWeaponAction = new InputAction(binding: "<Keyboard>/e");
         dropWeaponAction.performed += ctx => DropWeapon();
 
+        quitGameAction = new InputAction(binding: "<Keyboard>/escape");
+        quitGameAction.performed += ctx => Application.Quit();
+
         inventory = GetComponent<Inventory>();
     }
 
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
         pickUpAction?.Enable();
         reloadAction?.Enable();
         dropWeaponAction?.Enable();
+        quitGameAction?.Enable();
     }
 
     private void OnDisable()
@@ -44,6 +48,7 @@ public class PlayerController : MonoBehaviour
         pickUpAction?.Disable();
         reloadAction?.Disable();
         dropWeaponAction?.Disable();
+        quitGameAction?.Disable();
     }
 
     void Update()
