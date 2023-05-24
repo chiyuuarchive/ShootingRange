@@ -16,17 +16,25 @@ public class CRailTarget : Context
      */
 
     private StateFlags flags;
+    [SerializeField] private float idleTime;
 
-
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         flags = gameObject.GetComponent<StateFlags>();
     }
 
     protected override void Start()
     {
-        base.Start();
         GetComponent<HitHandler>().OnHit += GetHit;
+
+        AddState(new SRailMovement());
+        AddState(new SInactivating());
+        AddState(new SActivating());
+        AddState(new SIdleForTime(idleTime));
+        SetDefaultState(states[0]);
+
+        base.Start();
     }
 
     protected override int CheckTransitions()

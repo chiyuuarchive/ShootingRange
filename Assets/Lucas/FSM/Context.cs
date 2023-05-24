@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Context : MonoBehaviour
 {
-    [SerializeField] private List<State> states;
+    [SerializeField] protected List<State> states;
     [SerializeField] private State currentState;
     [SerializeField] protected int defaultState;
     private State goalState;
     private int goalID;
 
-
+    protected virtual void Awake()
+    {
+        states = new List<State>();
+    }
     protected virtual void Start()
     {
         for(int i = 0; i < states.Count;++i)

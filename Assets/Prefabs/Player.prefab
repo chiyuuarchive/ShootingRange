@@ -191,7 +191,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &8616685848737228371
 MonoBehaviour:
@@ -222,6 +222,9 @@ MonoBehaviour:
   CinemachineCameraTarget: {fileID: 4135013735270702863}
   TopClamp: 89
   BottomClamp: -89
+  gameStoppedEvent: {fileID: 11400000, guid: 2364743e7919a2d4b9072e8a99ebcb41, type: 2}
+  gamePausedEvent: {fileID: 11400000, guid: 777882c8822eb6c4e8ababb99e41375c, type: 2}
+  gameResumedEvent: {fileID: 11400000, guid: 973f27f5ff70d234abb48cf18a0530c4, type: 2}
 --- !u!114 &1978471637655604388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,3 +388,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpDistance: 5
+  gameEndedEvent: {fileID: 11400000, guid: 2364743e7919a2d4b9072e8a99ebcb41, type: 2}
+  gamePausedEvent: {fileID: 11400000, guid: 777882c8822eb6c4e8ababb99e41375c, type: 2}
+  gameResumedEvent: {fileID: 11400000, guid: 973f27f5ff70d234abb48cf18a0530c4, type: 2}
