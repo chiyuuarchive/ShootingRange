@@ -12,6 +12,15 @@ public class GameManager : MonoBehaviour
     EventSO displayScoreBoardEvent;
     [SerializeField]
     EventSO updateTargetImmunityEvent;
+    [SerializeField]
+    EventSO gameStoppedEvent;
+    [SerializeField]
+    EventSO gamePausedEvent;
+    [SerializeField]
+    EventSO gameRestartEvent;
+    [SerializeField]
+    EventSO gameResumedEvent;
+
 
     [SerializeField]
     float startDelay = 4f;
@@ -21,7 +30,7 @@ public class GameManager : MonoBehaviour
     float showMsgAt = 10f;
 
     float counter;
-    bool gameHasStarted, gameHasEnded;
+    bool gameHasStarted, gameHasEnded, gameIsPaused;
 
     InputAction restartKeyPressed, quitGameKeyPressed;
 
@@ -35,7 +44,16 @@ public class GameManager : MonoBehaviour
         restartKeyPressed.performed += ctx => RestartKeyButtonPressed();
 
         quitGameKeyPressed = new InputAction(binding: "<Keyboard>/escape");
-        quitGameKeyPressed.performed += ctx => Application.Quit();
+        quitGameKeyPressed.performed += ctx => DeterminePaus();
+
+        gameResumedEvent.list += ResumeGame;
+        gameRestartEvent.list+= RestartGame;
+    }
+
+    private void OnDestroy()
+    {
+        gameResumedEvent.list -= ResumeGame;
+        gameRestartEvent.list -= RestartGame;
     }
 
     void Start() 
@@ -43,6 +61,7 @@ public class GameManager : MonoBehaviour
         ResetTimer();
         gameHasStarted = false;
         gameHasEnded = false;
+        gameIsPaused = false;
     }
 
     private void OnEnable()
@@ -59,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameHasEnded) return;
+        if (gameHasEnded || gameIsPaused) return;
         counter += Time.fixedDeltaTime;
 
         if (!gameHasStarted)
@@ -94,15 +113,55 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game has ended!");
         displayScoreBoardEvent?.Invoke();
         updateGameScreenEvent?.Invoke(-1);
+        gameStoppedEvent?.Invoke();
+        Time.timeScale = 0;
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
 
+    void DeterminePaus()
+    {
+        if (gameHasEnded) return;
+
+        if (gameIsPaused)
+        {
+            gameResumedEvent?.Invoke();
+            //ResumeGame();
+        }
+        else
+        {
+            gamePausedEvent?.Invoke();
+            PauseGame();
+        }
+    }
+    void PauseGame()
+    {
+        gameIsPaused= true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+
+        Time.timeScale = 0;
+    }
+
+    void ResumeGame()
+    {
+        gameIsPaused = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        Time.timeScale = 1;
+    }
+
+
     void RestartKeyButtonPressed()
     {
         Debug.Log("Restart button pressed");
-
+        RestartGame();
+    }
+    void RestartGame()
+    {
+        gameResumedEvent?.Invoke(); //set everything to be normal before reset / causes problems otherwise
         Cursor.visible = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

@@ -6,9 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     float pickUpDistance;
+    [SerializeField]
+    EventSO gameEndedEvent;
+    [SerializeField]
+    EventSO gamePausedEvent;
+    [SerializeField]
+    EventSO gameResumedEvent;
 
-    InputAction shootAction, pickUpAction, reloadAction, dropWeaponAction, quitGameAction;
+    InputAction shootAction, pickUpAction, reloadAction, dropWeaponAction, pauseGameAction;
     bool isLMBPressed;
+    bool isInputEnabled;
 
     Inventory inventory;
 
@@ -27,10 +34,24 @@ public class PlayerController : MonoBehaviour
         dropWeaponAction = new InputAction(binding: "<Keyboard>/e");
         dropWeaponAction.performed += ctx => DropWeapon();
 
-        quitGameAction = new InputAction(binding: "<Keyboard>/escape");
-        quitGameAction.performed += ctx => Application.Quit();
+
+        gameEndedEvent.list += DisableInput;
+        gamePausedEvent.list += DisableInput;
+        gameResumedEvent.list += EnableInputs;
 
         inventory = GetComponent<Inventory>();
+    }
+
+    private void OnDestroy()
+    {
+        gameEndedEvent.list -= DisableInput;
+        gamePausedEvent.list -= DisableInput;
+        gameResumedEvent.list -= EnableInputs;
+    }
+
+    private void Start()
+    {
+        EnableInputs();
     }
 
     private void OnEnable()
@@ -39,7 +60,7 @@ public class PlayerController : MonoBehaviour
         pickUpAction?.Enable();
         reloadAction?.Enable();
         dropWeaponAction?.Enable();
-        quitGameAction?.Enable();
+        pauseGameAction?.Enable();
     }
 
     private void OnDisable()
@@ -48,25 +69,44 @@ public class PlayerController : MonoBehaviour
         pickUpAction?.Disable();
         reloadAction?.Disable();
         dropWeaponAction?.Disable();
-        quitGameAction?.Disable();
+        pauseGameAction?.Disable();
     }
 
     void Update()
     {
+        if (isInputEnabled == false) return;
         if (isLMBPressed) inventory.UseWeapon();
     }
 
-    void ReloadButtonPressed() 
+    void ReloadButtonPressed()
     {
+        if (isInputEnabled == false) return;
         if (inventory.HasWeapon) inventory.UseMagazine();
-    } 
+    }
 
-    void PickUpButtonPressed() => RaycastForInteraction();
+    void PickUpButtonPressed()
+    {
+        if (isInputEnabled == false) return;
+        RaycastForInteraction();
+    }
 
     void DropWeapon()
     {
+        if (isInputEnabled == false) return;
         if (inventory.HasWeapon) inventory.DropWeapon();
     }
+
+    void DisableInput()
+    {
+        isInputEnabled = false;
+    }
+
+    void EnableInputs()
+    {
+        isInputEnabled = true;
+    }
+
+
 
     #region Pickup input handler
     void RaycastForInteraction()

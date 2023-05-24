@@ -5,6 +5,7 @@ public class GameScreen : Screen
 {
     [SerializeField]
     IntEventSO updateGameScreenEvent;
+
     [SerializeField]
     TMP_Text gameScreenMsg;
 
@@ -23,4 +24,6 @@ public class GameScreen : Screen
 
         gameScreenMsg.text = $"Game finishes in...{msg}";
     }
+
+
 }

@@ -52,7 +52,7 @@ public class Gun : MonoBehaviour
             TrailRenderer trail = Instantiate(BulletTrail, muzzle.position, Quaternion.identity);
 
             StartCoroutine(SpawnTrail(trail, hitInfo));
-            Debug.Log(hitInfo.transform.name);
+            //Debug.Log(hitInfo.transform.name);
 
             //Deal damage here
             hitInfo.transform.GetComponent<TargetHitHandler>()?.GetHit();
