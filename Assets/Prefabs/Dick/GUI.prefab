@@ -212,6 +212,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4570848015926362681, guid: 9f5c1f25a2b15f9409940db80d0b0df0,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6936174867718908726, guid: 9f5c1f25a2b15f9409940db80d0b0df0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -290,6 +295,50 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 368984040327993499}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4210882187418852015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4570848015926362676, guid: 9f5c1f25a2b15f9409940db80d0b0df0,
+    type: 3}
+  m_PrefabInstance: {fileID: 368984040327993499}
+  m_PrefabAsset: {fileID: 0}
+--- !u!222 &1903519655756015958
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4210882187418852015}
+  m_CullTransparentMesh: 1
+--- !u!114 &9150360926353740299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4210882187418852015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.8627451}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1001 &6496331089958759059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -406,6 +455,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StartScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126277370259069577, guid: f7ecc4e7a350a7540b9b72048306a270,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7ecc4e7a350a7540b9b72048306a270, type: 3}
@@ -656,6 +710,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549462548005717246, guid: e450d9770cc0c92428f7c72f5850c76b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e450d9770cc0c92428f7c72f5850c76b, type: 3}

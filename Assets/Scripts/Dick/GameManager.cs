@@ -102,6 +102,8 @@ public class GameManager : MonoBehaviour
     void RestartKeyButtonPressed()
     {
         Debug.Log("Restart button pressed");
+
+        Cursor.visible = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
