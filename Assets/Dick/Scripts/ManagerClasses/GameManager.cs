@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         restartKeyPressed.performed += ctx => RestartKeyButtonPressed();
 
         quitGameKeyPressed = new InputAction(binding: "<Keyboard>/escape");
-        quitGameKeyPressed.performed += ctx => DeterminePaus();
+        quitGameKeyPressed.performed += ctx => DeterminePause();
 
         gameResumedEvent.list += ResumeGame;
         gameRestartEvent.list+= RestartGame;
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    void DeterminePaus()
+    void DeterminePause()
     {
         if (gameHasEnded) return;
 
@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
+        updateStartScreenEvent?.Invoke(-1);
         Time.timeScale = 0;
     }
 
@@ -149,6 +150,11 @@ public class GameManager : MonoBehaviour
         gameIsPaused = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (gameHasStarted)
+            updateStartScreenEvent?.Invoke(-1);
+        else
+            updateStartScreenEvent?.Invoke((int)(startDelay - counter));
 
         Time.timeScale = 1;
     }
