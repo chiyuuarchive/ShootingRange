@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenuAttribute(menuName = "State/IdleForTime")]
 public class SIdleForTime : State
 {
     [SerializeField] private float idleTime;
     private Rigidbody rigidbody;
     private StateFlags flags;
     private Timer timer;
+
+    public SIdleForTime(float idleTime)
+    {
+        this.idleTime = idleTime;
+    }
 
     public override void Enter(Context contex)
     {
@@ -46,7 +50,6 @@ public class SIdleForTime : State
     private void FinishIdle()
     {
         flags.FinnishedIdling = true;
-        Debug.Log("Finnished idling");
     }
 
 }

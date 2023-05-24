@@ -25,6 +25,7 @@ public class TargetHitHandler : HitHandler
 
     public override void GetHit()
     {
+        Debug.Log("GEthit");
         if (!flags.Active || isImmune) return;
 
         base.GetHit();

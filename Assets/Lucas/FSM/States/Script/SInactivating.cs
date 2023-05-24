@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-[CreateAssetMenuAttribute(menuName = "State/Inactivating")]
 public class SInactivating : State
 {
 
